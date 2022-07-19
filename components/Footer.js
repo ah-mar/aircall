@@ -9,7 +9,7 @@ import {
 
 function Footer() {
   return (
-    <footer className=" border flex items-center justify-between sticky w-full bottom-0 p-1 z-20 bg-white">
+    <footer className=" border flex items-center justify-between  w-full absolute bottom-0 left-0 p-1 z-20 bg-white">
       <button className="relative p-4 group cursor-pointer focus:border-b-2 border-green-500 text-gray-700">
         <PhoneIcon className="h-8 w-8 p-1 rounded-full text-gray-700 group-hover:bg-gray-200" />
         <span className="absolute top-2 right-2 text-[8px] p-[2px] border rounded-full bg-red-500 text-white font-bold ">

@@ -66,25 +66,25 @@ const activities = [
     call_type: "answered",
   },
   {
-    id: 7829,
+    id: 7828,
     created_at: "2018-04-18T15:43:32.000Z",
     direction: "inbound",
     from: "+33 6 34 45 74 34",
-    to: "Olivier Pailhes",
+    to: "James Bond",
     via: "Spain Hotline",
     duration: "300",
-    is_archived: false,
+    is_archived: true,
     call_type: "answered",
   },
   {
-    id: 7829,
+    id: 7827,
     created_at: "2018-04-18T15:43:32.000Z",
     direction: "inbound",
     from: "+33 6 34 45 74 34",
-    to: "Olivier Pailhes",
+    to: "Jack Bauer",
     via: "Spain Hotline",
     duration: "300",
-    is_archived: false,
+    is_archived: true,
     call_type: "answered",
   },
 ];
@@ -97,8 +97,17 @@ const activity = {
   to: "Olivier Pailhes",
   via: "Spain Hotline",
   duration: "300",
-  is_archived: false,
+  is_archived: true,
   call_type: "answered",
 };
 
 export {activities, activity}
+
+
+
+
+fetch("https://aircall-job.herokuapp.com/activities:")
+  .then((res) => res.json())
+  .then((data) => setCalls(data))
+  .catch((error) => console.error(error))
+ 

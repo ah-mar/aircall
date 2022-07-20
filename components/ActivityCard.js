@@ -15,7 +15,7 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ is_archived: true }),
+      body: JSON.stringify({ is_archived: !activity.is_archived }),
       method: "POST",
     };
 
@@ -67,8 +67,11 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
       {isCardOpen && (
         <div className="">
           <div className="flex items-center justify-between mt-4 gap-8">
-            <button onClick={archiveCall} className="group cursor-pointer focus:border-b-2 border-green-500 text-gray-700">
-              <ArchiveIcon className="  h-8 w-8 p-1 rounded-full   group-hover:bg-gray-200" />
+            <button
+              onClick={archiveCall}
+              className=" cursor-pointer focus:border-b-2 border-green-500 text-gray-700"
+            >
+              <ArchiveIcon className="  h-8 w-8 p-1 rounded-full active:scale-95  hover:bg-gray-200" />
               <p className="text-xs">{activity.is_archived && "Archived"}</p>
             </button>
             <p className="text-xs text-gray-700 flex-grow">

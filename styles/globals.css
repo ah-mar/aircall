@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .footerButton {
+    @apply px-2 py-1 cursor-pointer focus:border-b-2 border-green-500 text-gray-700 active:scale-95 flex flex-col items-center justify-between gap-2;
+  }
+
+  .footerIcon {
+    @apply h-8 w-8 p-1 rounded-full text-gray-700   group-hover:bg-gray-200
+  }
+
+  .headerButton {
+    @apply p-4  cursor-pointer font-bold text-gray-700 hover:text-gray-400  focus:border-b-2 border-green-500
+  }
+}
+
+

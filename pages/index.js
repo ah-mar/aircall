@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import { BeakerIcon } from "@heroicons/react/solid";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 //import { activities } from "../data";
@@ -9,16 +6,18 @@ import ActivityCard from "../components/ActivityCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [filter, setFilter] = useState("inbox");
-  const [calls, setCalls] = useState([]);
-  const [refresh, setRefresh] = useState(true);
+  const [filter, setFilter] = useState("inbox"); //for header buttons
+  const [calls, setCalls] = useState([]); //primary call data
+  const [refresh, setRefresh] = useState(true); // to refetch after sending post request
 
   console.log({ calls, refresh });
 
+  // calculate number of missed call for use in footer phone icon
   const missedCalls = calls.filter(
     (call) => call.call_type === "missed"
   ).length;
 
+  //Initial data fetch, on component mount
   useEffect(() => {
     fetch("https://aircall-job.herokuapp.com/activities")
       .then((res) => res.json())
@@ -26,6 +25,7 @@ export default function Home() {
       .catch((error) => console.error(error));
   }, []);
 
+  //Subsequent data fetch - reactive on filter change and post requests
   useEffect(() => {
     fetch("https://aircall-job.herokuapp.com/activities")
       .then((res) => res.json())
@@ -64,8 +64,6 @@ export default function Home() {
             />
           ))}
         </main>
-
-        {/* Main */}
 
         <Footer missedCalls={missedCalls} />
       </div>

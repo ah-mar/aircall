@@ -101,13 +101,9 @@ const activity = {
   call_type: "answered",
 };
 
-export {activities, activity}
-
-
-
+export { activities, activity };
 
 fetch("https://aircall-job.herokuapp.com/activities:")
   .then((res) => res.json())
   .then((data) => setCalls(data))
-  .catch((error) => console.error(error))
- 
+  .catch((error) => console.error(error));

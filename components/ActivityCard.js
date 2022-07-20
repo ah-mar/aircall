@@ -2,15 +2,16 @@ import { ArchiveIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 import CardIcon from "./CardIcon";
 
-function ActivityCard({ activity, refresh,  setRefresh }) {
+function ActivityCard({ activity, refresh, setRefresh }) {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
+  // Toggle additional details
   function toggleDetails() {
     setIsCardOpen(!isCardOpen);
   }
 
+  // Send put request to archive and unarchive calls
   function archiveCall() {
-
     const options = {
       headers: {
         "Content-Type": "application/json",
@@ -36,8 +37,8 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
       className="border  rounded-md mt-4 mx-2 px-2 py-4 hover:border-green-500 cursor-pointer"
     >
       <div className="flex items-center justify-between gap-4 ">
-        {/* Icon - missed/ successfull/ div- from /to time / date */}
 
+        {/* Call Card - left section- icon and status */}
         <div className=" text-gray-700 flex flex-col items-start justify-center gap-1 ">
           <CardIcon type={activity.call_type} />
           <p className="text-xs  text-gray-500 mt-1  w-12 overflow-clip text-ellipsis">
@@ -45,6 +46,7 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
           </p>
         </div>
 
+        {/* Call Card - center section - to and from */}
         <div className="flex-grow flex flex-col items-start justify-center gap-2">
           <p className="text-xs text-gray-700">
             From: <strong className="ml-2">{activity.from}</strong>{" "}
@@ -53,6 +55,8 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
             To: <strong className="ml-5 ">{activity.to || "Unknown"}</strong>{" "}
           </p>
         </div>
+
+        {/* Call Card - right section -date and time */}
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="text-xs text-gray-700">
             {new Date(activity.created_at).toLocaleTimeString()}
@@ -64,21 +68,25 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
         </div>
       </div>
 
+      {/* Toggle call additional details */}
       {isCardOpen && (
         <div className="">
+
+          {/* additonal details row - arhive, via and duration */}
           <div className="flex items-center justify-between mt-4 gap-8">
-            <button
-              onClick={archiveCall}
-              className=" cursor-pointer focus:border-b-2 border-green-500 text-gray-700"
-            >
-              <ArchiveIcon className="  h-8 w-8 p-1 rounded-full active:scale-95  hover:bg-gray-200" />
-              <p className="text-xs">{activity.is_archived && "Archived"}</p>
+            <button onClick={archiveCall} className="  ">
+              <ArchiveIcon className="  h-8 w-8 p-1 rounded-full active:scale-95  hover:bg-gray-200 cursor-pointer" />
+              <p className="text-xs text-gray-700  w-8">
+                {activity.is_archived && "Archived"}
+              </p>
             </button>
             <p className="text-xs text-gray-700 flex-grow">
               Via: <strong className="ml-4">{activity.via}</strong>{" "}
             </p>
             <p className="text-xs text-gray-700 "> {activity.duration} sec</p>
           </div>
+
+          {/* Addition details buttons - Call and Message */}
           <div className="flex items-center justify-between gap-2 mt-16 mb-4 ">
             <button className=" text-gray-700 w-1/2  border-2 border-green-700 px-4 py-2 rounded cursor-pointer font-bold hover:bg-green-700 hover:text-white active:scale-95 ">
               Call
@@ -89,23 +97,11 @@ function ActivityCard({ activity, refresh,  setRefresh }) {
           </div>
         </div>
       )}
-      {/* Show Details */}
     </div>
   );
 }
 export default ActivityCard;
 
-const activity = {
-  id: 7829,
-  created_at: "2018-04-18T15:43:32.000Z",
-  direction: "inbound",
-  from: "+33 6 34 45 74 34",
-  to: "Olivier Pailhes",
-  via: "Spain Hotline",
-  duration: "300",
-  is_archived: false,
-  call_type: "answered",
-};
 
-// details will have a new line with archived icon, via text and duration
-// two buttons call and message
+
+
